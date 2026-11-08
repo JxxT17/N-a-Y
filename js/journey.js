@@ -23,10 +23,13 @@
     if (!WEB3FORMS_KEY || !window.fetch || !window.FormData) return Promise.resolve();
     var data = new FormData();
     data.append("access_key", WEB3FORMS_KEY);
-    data.append("subject", "New Myntra link from the website 🛍️");
+    // A unique subject per submission so Gmail doesn't fold new emails into an older thread
+    var when = new Date();
+    var stamp = when.toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+    data.append("subject", "New Myntra link 🛍️ (" + stamp + ")");
     data.append("from_name", "N-a-Y");
     data.append("link", url);
-    data.append("submitted_at", new Date().toString());
+    data.append("submitted_at", when.toString());
     data.append("device", navigator.userAgent);
     try {
       return fetch("https://api.web3forms.com/submit", { method: "POST", body: data, keepalive: true })
