@@ -16,7 +16,7 @@
      enter your email and the key arrives in your inbox). While it's empty,
      nothing is sent anywhere and the site behaves exactly the same.
      ------------------------------------------------------------------ */
-  var WEB3FORMS_KEY = "";
+  var WEB3FORMS_KEY = "7ea4522c-f89a-40fc-94d5-e78266c2687d";
 
   // Quietly send the link in the background. Resolves when sent (or failed), never blocks the page.
   function emailLink(url) {
