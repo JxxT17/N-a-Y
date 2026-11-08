@@ -162,7 +162,6 @@
         hint.remove();
         photo.hidden = false;
         photo.focus({ preventScroll: true });
-        $("stop1-note").textContent = "keep going — there's more ↓";
         queueDraw();
         requestAnimationFrame(function () {
           requestAnimationFrame(advance);
