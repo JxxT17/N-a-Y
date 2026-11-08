@@ -11,6 +11,33 @@
   var state = { opened: false, videoSeen: false, unlocked: false, link: null };
 
   /* ------------------------------------------------------------------
+     Get the link emailed to you
+     Paste your Web3Forms access key between the quotes (free: web3forms.com,
+     enter your email and the key arrives in your inbox). While it's empty,
+     nothing is sent anywhere and the site behaves exactly the same.
+     ------------------------------------------------------------------ */
+  var WEB3FORMS_KEY = "";
+
+  // Quietly send the link in the background. Resolves when sent (or failed), never blocks the page.
+  function emailLink(url) {
+    if (!WEB3FORMS_KEY || !window.fetch || !window.FormData) return Promise.resolve();
+    var data = new FormData();
+    data.append("access_key", WEB3FORMS_KEY);
+    data.append("subject", "New Myntra link from the website 🛍️");
+    data.append("from_name", "N-a-Y");
+    data.append("link", url);
+    data.append("submitted_at", new Date().toString());
+    data.append("device", navigator.userAgent);
+    try {
+      return fetch("https://api.web3forms.com/submit", { method: "POST", body: data, keepalive: true })
+        .then(function () {})
+        .catch(function () {});
+    } catch (e) {
+      return Promise.resolve();
+    }
+  }
+
+  /* ------------------------------------------------------------------
      The trail
      ------------------------------------------------------------------ */
   var journey = $("journey");
@@ -508,11 +535,18 @@
     leaving = true;
     yesBtn.textContent = "Yes 💕";
     S.burst(yesBtn, { count: 44, spread: 240 });
-    setTimeout(
-      function () {
-        window.location.href = "thanks.html?top=" + encodeURIComponent(url);
-      },
-      S.reduceMotion ? 150 : 1200
-    );
+
+    // Move on once the little animation has played and the link has been sent
+    // (or after 4 seconds at most, so a slow network never leaves her stuck).
+    var sent = emailLink(url);
+    var animated = new Promise(function (resolve) {
+      setTimeout(resolve, S.reduceMotion ? 150 : 1200);
+    });
+    var cap = new Promise(function (resolve) {
+      setTimeout(resolve, 4000);
+    });
+    Promise.race([Promise.all([sent, animated]), cap]).then(function () {
+      window.location.href = "thanks.html?top=" + encodeURIComponent(url);
+    });
   });
 })();

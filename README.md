@@ -28,3 +28,16 @@ Repo **Settings → Pages → Build and deployment → Deploy from a branch**. P
 - The maths problems and wrong-answer messages are in `js/journey.js` (`PROBLEMS`, `NOPES`).
 - Media: `assets/img/stop1-surprise.webp`, `assets/video/stop2-exhibit-a.mp4`, `assets/img/stop3-locked.webp`.
 - The site has no backend. The dropped Myntra link is only passed to the thank-you page in the URL.
+
+## Getting the Myntra link emailed to you
+
+When she presses **Yes**, the page can quietly email you the link she dropped or pasted. Nothing on the page changes.
+
+1. Go to https://web3forms.com, enter your email and click **Create Access Key**. The key arrives in your inbox.
+2. Open `js/journey.js` and paste it between the quotes on this line near the top:
+   ```js
+   var WEB3FORMS_KEY = "";
+   ```
+3. Commit and push. Each **Yes** now sends you an email with the link, the time and her device.
+
+While the key is empty, nothing is sent anywhere. The access key is designed to be public, so it's fine in the code. Anyone who finds it could only send emails to your own inbox.
