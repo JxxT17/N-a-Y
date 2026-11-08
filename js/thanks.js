@@ -1,4 +1,4 @@
-/* Page 3 — thank you, and a way to actually send over the top she picked. */
+/* Page 3 — thank you, plus a P.S. when she picked a top. */
 (function () {
   "use strict";
 
@@ -18,16 +18,6 @@
   var url = top && S.extractMyntra ? S.extractMyntra(top) : null;
 
   if (url) {
-    var ps = document.getElementById("ps");
-    var send = document.getElementById("sendTop");
-    var message = "this one 👉 " + url;
-    send.href = "https://wa.me/?text=" + encodeURIComponent(message);
-    send.addEventListener("click", function (e) {
-      if (navigator.share) {
-        e.preventDefault();
-        navigator.share({ text: "this one 👉", url: url }).catch(function () {});
-      }
-    });
-    ps.hidden = false;
+    document.getElementById("ps").hidden = false;
   }
 })();

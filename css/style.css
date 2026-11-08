@@ -1079,12 +1079,7 @@ button {
 }
 
 .ps p {
-  margin: 0 0 14px;
-}
-
-.ps .btn {
-  min-height: 46px;
-  font-size: 16px;
+  margin: 0;
 }
 
 .again {
