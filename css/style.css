@@ -267,30 +267,13 @@ button {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  padding: 0;
-}
-
-/* The whole screen is the way forward: tap anywhere to continue */
-.apology__link {
-  flex: 1;
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px var(--gutter);
+  gap: clamp(28px, 6vh, 48px);
+  padding-top: 24px;
+  padding-bottom: 24px;
   text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.apology__link:focus-visible {
-  outline: none;
-}
-
-.apology__link:focus-visible .apology__title {
-  outline: 2px solid var(--amber);
-  outline-offset: 12px;
-  border-radius: 12px;
 }
 
 .apology__title {
@@ -300,12 +283,8 @@ button {
   background-clip: text;
   color: transparent;
   padding: 0 0.08em 0.08em;
+  text-decoration: none;
   animation: breathe 4s ease-in-out infinite;
-  transition: transform 0.4s ease;
-}
-
-.apology__link:hover .apology__title {
-  transform: scale(1.03);
 }
 
 @keyframes breathe {
