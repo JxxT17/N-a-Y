@@ -1,26 +1,8 @@
-/* Shared bits: candle-light bokeh, scroll reveals, and a little heart burst. */
+/* Shared bits: scroll reveals, a little heart burst, and the Myntra link check. */
 (function () {
   "use strict";
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Drifting candle-light bokeh
-  var bokeh = document.querySelector(".bokeh");
-  if (bokeh && !reduceMotion) {
-    var count = window.innerWidth < 600 ? 14 : 24;
-    for (var i = 0; i < count; i++) {
-      var s = document.createElement("span");
-      var size = 8 + Math.random() * 46;
-      s.style.width = size + "px";
-      s.style.height = size + "px";
-      s.style.left = Math.random() * 100 + "%";
-      s.style.animationDuration = 14 + Math.random() * 18 + "s";
-      s.style.animationDelay = -Math.random() * 30 + "s";
-      s.style.setProperty("--dx", (Math.random() * 120 - 60).toFixed(0) + "px");
-      s.style.setProperty("--o", (0.25 + Math.random() * 0.5).toFixed(2));
-      bokeh.appendChild(s);
-    }
-  }
 
   // Fade things up as they scroll into view
   var revealEls = document.querySelectorAll(".reveal");
@@ -48,7 +30,7 @@
 
   var HEART_PATH =
     "M12 21.6 10.3 20C4.1 14.4 0 10.7 0 6.2 0 2.7 2.7 0 6.2 0c2 0 3.9.9 5.8 2.6C13.9.9 15.8 0 17.8 0 21.3 0 24 2.7 24 6.2c0 4.5-4.1 8.2-10.3 13.8L12 21.6z";
-  var COLORS = ["#ff5c8a", "#ffb547", "#ffd98a", "#ff86a8", "#fff3e0"];
+  var COLORS = ["#ff375f", "#ffffff", "#ff6b8b", "#ffb3c4", "#bf5af2"];
 
   // Burst of little hearts from the centre of an element
   function burst(el, opts) {
