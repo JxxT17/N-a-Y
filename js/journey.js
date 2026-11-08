@@ -385,38 +385,49 @@
     }
   }
 
+  var DZ_TITLE = dropTitle.textContent;
+  var DZ_SUB = dropSub.textContent;
+
+  // Reflect the current link (or none) in the drop-box
+  function showLink(url) {
+    state.link = url;
+    dz.classList.toggle("is-filled", !!url);
+    dropTitle.textContent = url ? "got it. noted. very noted. 📝" : DZ_TITLE;
+    dropSub.textContent = url ? "now answer the question below ↓" : DZ_SUB;
+    dropLink.textContent = url ? prettyLink(url) : "";
+    dropLink.title = url || "";
+    dropLink.hidden = !url;
+  }
+
+  function complain(text) {
+    dropFeedback.className = "drop-feedback is-bad";
+    dropFeedback.textContent = String(text || "").trim()
+      ? "hmm, that doesn't look like a Myntra link 👀"
+      : "drop (or paste) a Myntra link first, silly";
+    shake(dz);
+  }
+
+  function clearFeedback() {
+    dropFeedback.className = "drop-feedback";
+    dropFeedback.textContent = "";
+  }
+
+  // Dropped or pasted onto the box: fill it in, but don't submit. Answering "Yes" does that.
   function accept(text) {
     var url = S.extractMyntra ? S.extractMyntra(text) : null;
     if (!url) {
-      dropFeedback.className = "drop-feedback is-bad";
-      dropFeedback.textContent = String(text || "").trim()
-        ? "hmm, that doesn't look like a Myntra link 👀"
-        : "drop (or paste) a Myntra link first, silly";
-      shake(dz);
+      complain(text);
       return;
     }
-
-    state.link = url;
     linkInput.value = url;
-    dz.classList.add("is-filled");
-    dropTitle.textContent = "got it. noted. very noted. 📝";
-    dropSub.textContent = "consider it on my list";
-    dropLink.textContent = prettyLink(url);
-    dropLink.title = url;
-    dropLink.hidden = false;
-    dropFeedback.className = "drop-feedback is-ok";
-    dropFeedback.textContent = "";
-
-    if (ask.hidden) {
-      ask.hidden = false;
-      S.burst(dz, { count: 16, spread: 120 });
-      setTimeout(function () {
-        var r = ask.getBoundingClientRect();
-        if (r.bottom > window.innerHeight - 16) {
-          window.scrollBy({ top: r.bottom - window.innerHeight + 40, behavior: S.reduceMotion ? "auto" : "smooth" });
-        }
-      }, 250);
-    }
+    clearFeedback();
+    showLink(url);
+    setTimeout(function () {
+      var r = ask.getBoundingClientRect();
+      if (r.bottom > window.innerHeight - 16) {
+        window.scrollBy({ top: r.bottom - window.innerHeight + 40, behavior: S.reduceMotion ? "auto" : "smooth" });
+      }
+    }, 250);
   }
 
   function readDrop(dt) {
@@ -470,9 +481,10 @@
     }
   });
 
-  linkForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    accept(linkInput.value);
+  linkInput.addEventListener("input", function () {
+    clearFeedback();
+    var url = S.extractMyntra ? S.extractMyntra(linkInput.value) : null;
+    if (url !== state.link) showLink(url);
   });
 
   // A link dropped anywhere else on the page shouldn't navigate away from it
@@ -486,15 +498,24 @@
     if (!$("finale").hidden && !state.link) accept(readDrop(e.dataTransfer));
   });
 
+  // "Yes" is the submit button: it sends the link along to the last page
   var leaving = false;
-  yesBtn.addEventListener("click", function () {
-    if (leaving || !state.link) return;
+  linkForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (leaving) return;
+    var url = S.extractMyntra ? S.extractMyntra(linkInput.value) : null;
+    if (!url) {
+      complain(linkInput.value);
+      linkInput.focus();
+      return;
+    }
+    showLink(url);
     leaving = true;
     yesBtn.textContent = "Yes 💕";
     S.burst(yesBtn, { count: 44, spread: 240 });
     setTimeout(
       function () {
-        window.location.href = "thanks.html?top=" + encodeURIComponent(state.link);
+        window.location.href = "thanks.html?top=" + encodeURIComponent(url);
       },
       S.reduceMotion ? 150 : 1200
     );

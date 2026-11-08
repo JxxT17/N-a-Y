@@ -64,14 +64,13 @@
               <span class="gift__tag">Surprise</span>
             </button>
             <p class="gift-hint" id="giftHint" aria-hidden="true">tap to open ↑</p>
-            <figure class="polaroid" id="surprisePhoto" tabindex="-1" hidden>
+            <figure class="polaroid polaroid--plain" id="surprisePhoto" tabindex="-1" hidden>
               <img
                 src="assets/img/stop1-surprise.webp"
-                width="900"
-                height="1196"
-                alt="You, smiling over a cake full of birthday candles"
+                width="800"
+                height="992"
+                alt="A white shirt covered in handwritten notes and signatures"
               />
-              <figcaption>glowing brighter than the candles</figcaption>
             </figure>
           </div>
         </div>
@@ -120,9 +119,9 @@
             <img
               class="locked__img"
               src="assets/img/stop3-locked.webp"
-              width="800"
-              height="992"
-              alt="A white shirt covered in handwritten notes and signatures"
+              width="900"
+              height="1196"
+              alt="You, smiling over a cake full of birthday candles"
             />
             <div class="lock-panel" id="lockPanel">
               <svg class="padlock" viewBox="0 0 56 64" aria-hidden="true" focusable="false">
@@ -180,6 +179,7 @@
           <p class="dropzone__link" id="dropLink" hidden></p>
         </div>
 
+        <!-- The link is submitted by answering "Yes" -->
         <form class="link-form" id="linkForm" novalidate autocomplete="off">
           <label class="sr-only" for="linkInput">Myntra link</label>
           <input
@@ -191,16 +191,15 @@
             spellcheck="false"
             autocapitalize="off"
             autocorrect="off"
-            enterkeyhint="done"
+            enterkeyhint="send"
           />
-          <button class="btn btn--rose" type="submit">Drop it</button>
-        </form>
-        <p class="drop-feedback" id="dropFeedback" role="status" aria-live="polite"></p>
+          <p class="drop-feedback" id="dropFeedback" role="status" aria-live="polite"></p>
 
-        <div class="ask" id="ask" hidden>
-          <p class="ask__q">Do you miss me?</p>
-          <button class="btn btn--rose btn--yes" id="yesBtn" type="button">Yes</button>
-        </div>
+          <div class="ask" id="ask">
+            <p class="ask__q" id="askQ">Do you miss me?</p>
+            <button class="btn btn--rose btn--yes" id="yesBtn" type="submit" aria-describedby="askQ">Yes</button>
+          </div>
+        </form>
       </section>
     </main>
 
