@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#140b07" />
+    <title>A Tiny Journey</title>
+    <meta name="description" content="Three stops, one idiot." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%81%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400,100,1;1,9..144,400,100,1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="bokeh" aria-hidden="true"></div>
+
+    <header class="page journey-head">
+      <p class="eyebrow reveal">a tiny journey</p>
+      <h1 class="display reveal">Three stops, <em>one idiot.</em></h1>
+      <p class="reveal">Follow the trail. It ends somewhere good — I hope.</p>
+    </header>
+
+    <main class="page journey" id="journey">
+      <svg class="journey__svg" id="trail" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="trailGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+            <stop offset="0" stop-color="#ffd98a" />
+            <stop offset="0.5" stop-color="#ffb547" />
+            <stop offset="1" stop-color="#ff5c8a" />
+          </linearGradient>
+          <filter id="trailGlow" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g class="journey__tracks"></g>
+        <g class="journey__fills" filter="url(#trailGlow)"></g>
+      </svg>
+
+      <div class="start">
+        <span class="start__pill" data-node data-anchor="bottom"><span class="start__dot"></span>start here</span>
+      </div>
+
+      <!-- Stop 1 — the surprise box -->
+      <section class="stop stop--main-right" id="stop1" aria-labelledby="stop1-title">
+        <div class="pin" data-node aria-hidden="true">1</div>
+        <div class="stop__side reveal">
+          <span class="stop__label">Stop 01</span>
+          <h2 class="stop__title" id="stop1-title">Surprise</h2>
+          <p class="stop__note" id="stop1-note">Something's waiting inside. Go on, open it.</p>
+        </div>
+        <div class="stop__main reveal">
+          <div class="gift-stage" id="giftStage">
+            <button class="gift" id="gift" type="button" aria-label="Open the Surprise box">
+              <span class="gift__body"></span>
+              <span class="gift__lid"><span class="gift__bow"></span></span>
+              <span class="gift__tag">Surprise</span>
+            </button>
+            <p class="gift-hint" id="giftHint" aria-hidden="true">tap to open ↑</p>
+            <figure class="polaroid" id="surprisePhoto" tabindex="-1" hidden>
+              <img
+                src="assets/img/stop1-surprise.webp"
+                width="900"
+                height="1196"
+                alt="You, smiling over a cake full of birthday candles"
+              />
+              <figcaption>glowing brighter than the candles</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stop 2 — the video, with a note beside it -->
+      <section class="stop stop--main-left stop--video" id="stop2" aria-label="Stop 02, Exhibit A">
+        <div class="pin" data-node aria-hidden="true">2</div>
+        <div class="stop__main reveal">
+          <span class="tag-line">Stop 02 · Exhibit A</span>
+          <figure class="polaroid polaroid--video">
+            <video
+              id="exhibitA"
+              src="assets/video/stop2-exhibit-a.mp4"
+              poster="assets/video/stop2-poster.webp"
+              width="704"
+              height="768"
+              muted
+              loop
+              playsinline
+              autoplay
+              preload="auto"
+              aria-label="A short clip of us"
+            ></video>
+            <figcaption>us</figcaption>
+          </figure>
+        </div>
+        <div class="stop__side reveal">
+          <div class="bubble">
+            <p>he is lowkey a <mark>dumbass</mark> for someone who thinks he is so smart</p>
+            <small>— exhibit A, your honour</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stop 3 — locked behind a maths problem -->
+      <section class="stop stop--main-right" id="stop3" aria-labelledby="stop3-title">
+        <div class="pin" data-node aria-hidden="true">3</div>
+        <div class="stop__side reveal">
+          <span class="stop__label">Stop 03</span>
+          <h2 class="stop__title" id="stop3-title">Locked</h2>
+          <p class="stop__note" id="stop3-note">This one you have to earn. A little class 9 maths, that's all.</p>
+        </div>
+        <div class="stop__main reveal">
+          <div class="locked" id="locked">
+            <img
+              class="locked__img"
+              src="assets/img/stop3-locked.webp"
+              width="800"
+              height="992"
+              alt="A white shirt covered in handwritten notes and signatures"
+            />
+            <div class="lock-panel" id="lockPanel">
+              <svg class="padlock" viewBox="0 0 56 64" aria-hidden="true" focusable="false">
+                <path
+                  class="padlock__shackle"
+                  d="M16 30V20a12 12 0 0 1 24 0v10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                />
+                <rect x="6" y="28" width="44" height="34" rx="8" fill="currentColor" />
+                <circle cx="28" cy="42" r="4.5" fill="#2a1810" />
+                <rect x="26" y="44" width="4" height="9" rx="2" fill="#2a1810" />
+              </svg>
+              <p class="lock-title">Locked</p>
+              <p class="lock-sub">solve this to unlock · class 9 maths</p>
+
+              <form id="mathForm" novalidate autocomplete="off" style="width: 100%">
+                <div class="problem" id="problem"></div>
+                <div class="answer-row" id="answerRow">
+                  <label class="sr-only" for="answer">Your answer</label>
+                  <input class="field" id="answer" type="text" inputmode="decimal" placeholder="your answer" enterkeyhint="go" />
+                  <button class="btn" type="submit">Unlock</button>
+                </div>
+                <p class="feedback" id="mathFeedback" role="status" aria-live="polite"></p>
+                <p class="hint" id="mathHint" hidden></p>
+                <button type="button" class="link-btn" id="newProblem">give me a different one</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Finale — appears once stop 3 is unlocked -->
+      <section class="finale" id="finale" aria-labelledby="wish" hidden>
+        <div class="finale__heart" data-node aria-hidden="true">
+          <svg viewBox="0 0 24 22" focusable="false">
+            <path
+              fill="currentColor"
+              d="M12 21.6 10.3 20C4.1 14.4 0 10.7 0 6.2 0 2.7 2.7 0 6.2 0c2 0 3.9.9 5.8 2.6C13.9.9 15.8 0 17.8 0 21.3 0 24 2.7 24 6.2c0 4.5-4.1 8.2-10.3 13.8L12 21.6z"
+            />
+          </svg>
+        </div>
+
+        <p class="wish" id="wish">i wish you looked at me the way you look at tops when we are on call</p>
+
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-describedby="dropSub">
+          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
+            <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+          </svg>
+          <p class="dropzone__title" id="dropTitle">drop a Myntra link here</p>
+          <p class="dropzone__sub" id="dropSub">drag it in, or paste it below</p>
+          <p class="dropzone__link" id="dropLink" hidden></p>
+        </div>
+
+        <form class="link-form" id="linkForm" novalidate autocomplete="off">
+          <label class="sr-only" for="linkInput">Myntra link</label>
+          <input
+            class="field"
+            id="linkInput"
+            type="text"
+            inputmode="url"
+            placeholder="https://www.myntra.com/…"
+            spellcheck="false"
+            autocapitalize="off"
+            autocorrect="off"
+            enterkeyhint="done"
+          />
+          <button class="btn btn--rose" type="submit">Drop it</button>
+        </form>
+        <p class="drop-feedback" id="dropFeedback" role="status" aria-live="polite"></p>
+
+        <div class="ask" id="ask" hidden>
+          <p class="ask__q">Do you miss me?</p>
+          <button class="btn btn--rose btn--yes" id="yesBtn" type="button">Yes</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/journey.js"></script>
+  </body>
+</html>
