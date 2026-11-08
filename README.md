@@ -5,7 +5,7 @@ A small three-page static site: an apology, a short journey, and a thank-you.
 | Page | File | What happens |
 | --- | --- | --- |
 | 1 | `index.html` | Just "I'm Sorry." and a **Next** button to page 2. |
-| 2 | `journey.html` | A trail map with three stops: a gift box to tap open (the shirt photo), the video with its side note, and the birthday photo captioned with the wish. Below it, a class 9 maths problem locks the Myntra drop-box, **you miss me?** and the **Yes** button. Pressing **Yes** submits the link. |
+| 2 | `journey.html` | A trail map with three stops: a gift box to tap open (the shirt photo), the video with its side note, and the birthday photo captioned with the wish. Below it, a class 9 maths problem locks the Myntra drop-box, **Do you miss me?** and the **Yes** button. Pressing **Yes** submits the link. |
 | 3 | `thanks.html` | The thank-you page, reached by pressing **Yes**. If a Myntra link was dropped, it offers a button to send that link back. |
 
 ## Run it locally

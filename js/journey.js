@@ -344,7 +344,7 @@
     setTimeout(function () {
       finaleLock.hidden = true;
       finaleOpen.hidden = false;
-      $("finale").setAttribute("aria-label", "Drop a Myntra link, then answer: you miss me?");
+      $("finale").setAttribute("aria-label", "Drop a Myntra link, then answer: Do you miss me?");
       draw();
       requestAnimationFrame(function () {
         requestAnimationFrame(advance);
@@ -360,7 +360,7 @@
   pickProblem();
 
   /* ------------------------------------------------------------------
-     Finale — the Myntra drop-box, then "you miss me?"
+     Finale — the Myntra drop-box, then "Do you miss me?"
      ------------------------------------------------------------------ */
   var dz = $("dropzone");
   var dropTitle = $("dropTitle");
