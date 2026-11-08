@@ -337,7 +337,6 @@
     var t = S.reduceMotion ? 0 : 1;
     setTimeout(function () {
       $("stop3-title").textContent = "Unlocked";
-      $("stop3-note").textContent = "told you it was worth it.";
       S.burst(finaleLock.querySelector(".padlock"), { count: 30, spread: 200 });
     }, 550 * t);
 
@@ -345,7 +344,7 @@
     setTimeout(function () {
       finaleLock.hidden = true;
       finaleOpen.hidden = false;
-      $("finale").setAttribute("aria-label", "Drop a Myntra link, then answer: Do you miss me?");
+      $("finale").setAttribute("aria-label", "Drop a Myntra link, then answer: you miss me?");
       draw();
       requestAnimationFrame(function () {
         requestAnimationFrame(advance);
@@ -361,7 +360,7 @@
   pickProblem();
 
   /* ------------------------------------------------------------------
-     Finale — the Myntra drop-box, then "Do you miss me?"
+     Finale — the Myntra drop-box, then "you miss me?"
      ------------------------------------------------------------------ */
   var dz = $("dropzone");
   var dropTitle = $("dropTitle");
