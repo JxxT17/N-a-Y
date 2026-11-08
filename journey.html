@@ -48,20 +48,18 @@
         <span class="start__pill" data-node data-anchor="bottom"><span class="start__dot"></span>start here</span>
       </div>
 
-      <!-- Stop 1 — the surprise box -->
-      <section class="stop stop--main-right" id="stop1" aria-labelledby="stop1-title">
+      <!-- Stop 1 — the gift box -->
+      <section class="stop stop--main-right" id="stop1" aria-label="Stop 01">
         <div class="pin" data-node aria-hidden="true">1</div>
         <div class="stop__side reveal">
           <span class="stop__label">Stop 01</span>
-          <h2 class="stop__title" id="stop1-title">Surprise</h2>
-          <p class="stop__note" id="stop1-note">Something's waiting inside. Go on, open it.</p>
+          <p class="stop__note" id="stop1-note"></p>
         </div>
         <div class="stop__main reveal">
           <div class="gift-stage" id="giftStage">
-            <button class="gift" id="gift" type="button" aria-label="Open the Surprise box">
+            <button class="gift" id="gift" type="button" aria-label="Open the gift box">
               <span class="gift__body"></span>
               <span class="gift__lid"><span class="gift__bow"></span></span>
-              <span class="gift__tag">Surprise</span>
             </button>
             <p class="gift-hint" id="giftHint" aria-hidden="true">tap to open ↑</p>
             <figure class="polaroid polaroid--plain" id="surprisePhoto" tabindex="-1" hidden>
@@ -101,63 +99,34 @@
         <div class="stop__side reveal">
           <div class="bubble">
             <p>he is lowkey a <mark>dumbass</mark> for someone who thinks he is so smart</p>
-            <small>— exhibit A, your honour</small>
+            <small>— exhibit A</small>
           </div>
         </div>
       </section>
 
-      <!-- Stop 3 — locked behind a maths problem -->
+      <!-- Stop 3 — the photo and the wish; the maths lock guards what comes next -->
       <section class="stop stop--main-right" id="stop3" aria-labelledby="stop3-title">
         <div class="pin" data-node aria-hidden="true">3</div>
         <div class="stop__side reveal">
           <span class="stop__label">Stop 03</span>
           <h2 class="stop__title" id="stop3-title">Locked</h2>
-          <p class="stop__note" id="stop3-note">This one you have to earn. A little class 9 maths, that's all.</p>
+          <p class="stop__note" id="stop3-note">The next bit you have to earn. A little class 9 maths, that's all.</p>
         </div>
         <div class="stop__main reveal">
-          <div class="locked" id="locked">
+          <figure class="polaroid polaroid--wish">
             <img
-              class="locked__img"
               src="assets/img/stop3-locked.webp"
               width="900"
               height="1196"
               alt="You, smiling over a cake full of birthday candles"
             />
-            <div class="lock-panel" id="lockPanel">
-              <svg class="padlock" viewBox="0 0 56 64" aria-hidden="true" focusable="false">
-                <path
-                  class="padlock__shackle"
-                  d="M16 30V20a12 12 0 0 1 24 0v10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                />
-                <rect x="6" y="28" width="44" height="34" rx="8" fill="currentColor" />
-                <circle cx="28" cy="42" r="4.5" fill="#2a1810" />
-                <rect x="26" y="44" width="4" height="9" rx="2" fill="#2a1810" />
-              </svg>
-              <p class="lock-title">Locked</p>
-              <p class="lock-sub">solve this to unlock · class 9 maths</p>
-
-              <form id="mathForm" novalidate autocomplete="off" style="width: 100%">
-                <div class="problem" id="problem"></div>
-                <div class="answer-row" id="answerRow">
-                  <label class="sr-only" for="answer">Your answer</label>
-                  <input class="field" id="answer" type="text" inputmode="decimal" placeholder="your answer" enterkeyhint="go" />
-                  <button class="btn" type="submit">Unlock</button>
-                </div>
-                <p class="feedback" id="mathFeedback" role="status" aria-live="polite"></p>
-                <p class="hint" id="mathHint" hidden></p>
-                <button type="button" class="link-btn" id="newProblem">give me a different one</button>
-              </form>
-            </div>
-          </div>
+            <figcaption id="wish">i wish you looked at me the way you look at tops when we are on call</figcaption>
+          </figure>
         </div>
       </section>
 
-      <!-- Finale — appears once stop 3 is unlocked -->
-      <section class="finale" id="finale" aria-labelledby="wish" hidden>
+      <!-- Finale — the maths lock; solving it reveals the drop-box, the question and "Yes" -->
+      <section class="finale" id="finale" aria-label="Locked: solve the maths problem to continue">
         <div class="finale__heart" data-node aria-hidden="true">
           <svg viewBox="0 0 24 22" focusable="false">
             <path
@@ -167,39 +136,68 @@
           </svg>
         </div>
 
-        <p class="wish" id="wish">i wish you looked at me the way you look at tops when we are on call</p>
-
-        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-describedby="dropSub">
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
-            <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+        <div class="finale-lock" id="finaleLock">
+          <svg class="padlock" viewBox="0 0 56 64" aria-hidden="true" focusable="false">
+            <path
+              class="padlock__shackle"
+              d="M16 30V20a12 12 0 0 1 24 0v10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="6"
+              stroke-linecap="round"
+            />
+            <rect x="6" y="28" width="44" height="34" rx="8" fill="currentColor" />
+            <circle cx="28" cy="42" r="4.5" fill="#2a1810" />
+            <rect x="26" y="44" width="4" height="9" rx="2" fill="#2a1810" />
           </svg>
-          <p class="dropzone__title" id="dropTitle">drop a Myntra link here</p>
-          <p class="dropzone__sub" id="dropSub">drag it in, or paste it below</p>
-          <p class="dropzone__link" id="dropLink" hidden></p>
+          <p class="lock-title">Locked</p>
+          <p class="lock-sub">solve this to unlock · class 9 maths</p>
+
+          <form id="mathForm" novalidate autocomplete="off" style="width: 100%">
+            <div class="problem" id="problem"></div>
+            <div class="answer-row" id="answerRow">
+              <label class="sr-only" for="answer">Your answer</label>
+              <input class="field" id="answer" type="text" inputmode="decimal" placeholder="your answer" enterkeyhint="go" />
+              <button class="btn" type="submit">Unlock</button>
+            </div>
+            <p class="feedback" id="mathFeedback" role="status" aria-live="polite"></p>
+            <p class="hint" id="mathHint" hidden></p>
+            <button type="button" class="link-btn" id="newProblem">give me a different one</button>
+          </form>
         </div>
 
-        <!-- The link is submitted by answering "Yes" -->
-        <form class="link-form" id="linkForm" novalidate autocomplete="off">
-          <label class="sr-only" for="linkInput">Myntra link</label>
-          <input
-            class="field"
-            id="linkInput"
-            type="text"
-            inputmode="url"
-            placeholder="https://www.myntra.com/…"
-            spellcheck="false"
-            autocapitalize="off"
-            autocorrect="off"
-            enterkeyhint="send"
-          />
-          <p class="drop-feedback" id="dropFeedback" role="status" aria-live="polite"></p>
-
-          <div class="ask" id="ask">
-            <p class="ask__q" id="askQ">Do you miss me?</p>
-            <button class="btn btn--rose btn--yes" id="yesBtn" type="submit" aria-describedby="askQ">Yes</button>
+        <div class="finale-open" id="finaleOpen" hidden>
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-describedby="dropSub">
+            <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
+              <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+            </svg>
+            <p class="dropzone__title" id="dropTitle">drop a Myntra link here</p>
+            <p class="dropzone__sub" id="dropSub">drag it in, or paste it below</p>
+            <p class="dropzone__link" id="dropLink" hidden></p>
           </div>
-        </form>
+          <!-- The link is submitted by answering "Yes" -->
+          <form class="link-form" id="linkForm" novalidate autocomplete="off">
+            <label class="sr-only" for="linkInput">Myntra link</label>
+            <input
+              class="field"
+              id="linkInput"
+              type="text"
+              inputmode="url"
+              placeholder="https://www.myntra.com/…"
+              spellcheck="false"
+              autocapitalize="off"
+              autocorrect="off"
+              enterkeyhint="send"
+            />
+            <p class="drop-feedback" id="dropFeedback" role="status" aria-live="polite"></p>
+
+            <div class="ask" id="ask">
+              <p class="ask__q" id="askQ">Do you miss me?</p>
+              <button class="btn btn--rose btn--yes" id="yesBtn" type="submit" aria-describedby="askQ">Yes</button>
+            </div>
+          </form>
+        </div>
       </section>
     </main>
 

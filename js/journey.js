@@ -204,7 +204,7 @@
   }
 
   /* ------------------------------------------------------------------
-     Stop 3 — locked behind a class 9 maths problem
+     Finale lock — a class 9 maths problem guards the drop-box
      ------------------------------------------------------------------ */
   var X = "<i>x</i>";
   function frac(top, bottom) {
@@ -251,8 +251,8 @@
     "so close. (I genuinely don't know if that was close.)"
   ];
 
-  var locked = $("locked");
-  var lockPanel = $("lockPanel");
+  var finaleLock = $("finaleLock");
+  var finaleOpen = $("finaleOpen");
   var mathForm = $("mathForm");
   var problemEl = $("problem");
   var answer = $("answer");
@@ -332,33 +332,30 @@
     mathFeedback.className = "feedback is-ok";
     mathFeedback.textContent = "unlocked ✨ look at you go";
     answer.blur();
-    locked.classList.add("is-opening");
+    finaleLock.classList.add("is-opening");
 
     var t = S.reduceMotion ? 0 : 1;
     setTimeout(function () {
-      locked.classList.add("is-unlocked");
       $("stop3-title").textContent = "Unlocked";
       $("stop3-note").textContent = "told you it was worth it.";
-      S.burst(locked, { count: 30, spread: 200 });
+      S.burst(finaleLock.querySelector(".padlock"), { count: 30, spread: 200 });
     }, 550 * t);
 
+    // Swap the lock for the drop-box, the question and "Yes"
     setTimeout(function () {
-      lockPanel.hidden = true;
-      var finale = $("finale");
-      finale.hidden = false;
+      finaleLock.hidden = true;
+      finaleOpen.hidden = false;
+      $("finale").setAttribute("aria-label", "Drop a Myntra link, then answer: Do you miss me?");
       draw();
       requestAnimationFrame(function () {
         requestAnimationFrame(advance);
       });
 
-      // Nudge the finale into view without hiding the photo that just unlocked
-      setTimeout(function () {
-        var top = finale.getBoundingClientRect().top;
-        if (top > window.innerHeight * 0.8) {
-          window.scrollBy({ top: top - window.innerHeight * 0.55, behavior: S.reduceMotion ? "auto" : "smooth" });
-        }
-      }, 900 * t);
-    }, 1500 * t);
+      var r = $("finale").getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight * 0.6) {
+        window.scrollBy({ top: r.top - 80, behavior: S.reduceMotion ? "auto" : "smooth" });
+      }
+    }, 1300 * t);
   }
 
   pickProblem();
@@ -495,7 +492,7 @@
   window.addEventListener("drop", function (e) {
     if (e.target.closest && e.target.closest("input, textarea, .dropzone")) return;
     e.preventDefault();
-    if (!$("finale").hidden && !state.link) accept(readDrop(e.dataTransfer));
+    if (state.unlocked && !state.link) accept(readDrop(e.dataTransfer));
   });
 
   // "Yes" is the submit button: it sends the link along to the last page
